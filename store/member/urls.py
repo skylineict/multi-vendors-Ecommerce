@@ -1,7 +1,7 @@
 from .views import Registration
 from django.urls import path
 from .userlogin import Login
-from .logout import Logout
+from .utilities import Logout
 
 
 

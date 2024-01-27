@@ -3,6 +3,7 @@ from shortuuid.django_fields  import ShortUUIDField
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 from vendor.models import Vendor
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
@@ -47,16 +48,13 @@ Status = (
 )
 
 
-Rating = (
-(1, '⭐☆☆☆☆'),
-(2,   '⭐⭐☆☆☆'),
-(3,  '⭐⭐⭐☆☆'),
-(4,  '⭐⭐⭐⭐☆'),
-(5,  '⭐⭐⭐⭐⭐')
-
-)
-
-
+Rating = [
+        (1, '⭐☆☆☆☆'),
+        (2, '⭐⭐☆☆☆'),
+        (3, '⭐⭐⭐☆☆'),
+        (4, '⭐⭐⭐⭐☆'),
+        (5, '⭐⭐⭐⭐⭐')
+    ]
 
 
 
@@ -67,10 +65,13 @@ class Products(models.Model):
     vendors= models.ForeignKey(Vendor,  on_delete=models.CASCADE, null=True, related_name='products')
     category = models.ForeignKey(Category,  on_delete=models.CASCADE, null=True, related_name='product')
     image =   models.ImageField(upload_to=image_directory_path, default='product.jpg')
-    description = models.TextField(null=True, blank=True, default='elibook laptop')
+    description = RichTextUploadingField(null=True, blank=True)
+    sommary_product_info= RichTextUploadingField(null=True, blank=True )
+    # description = models.TextField(null=True, blank=True, default='elibook laptop')
     price =   models.DecimalField(max_digits=9999999,decimal_places=2,default=70.90)
     old_price =   models.DecimalField(max_digits=9999999,decimal_places=2,default=90.93)
-    spefications = models.TextField(null=True, blank=True)
+    # spefications = models.TextField(null=True, blank=True)
+    spefications = RichTextUploadingField(null=True, blank=True)
     product_status  = models.CharField(choices=Status, max_length=200, default='in review')
     status =   models.BooleanField(default=True)
     in_stock =   models.BooleanField(default=True)
@@ -147,15 +148,25 @@ class CartOrderItems(models.Model):
     def cartitem_image(self):
         return mark_safe('<img src="%s" width="40" height="40" />'% (self.image.url))
 
-    
+RATING_CHOICES = [
+        (1, '⭐☆☆☆☆'),
+        (2, '⭐⭐☆☆☆'),
+        (3, '⭐⭐⭐☆☆'),
+        (4, '⭐⭐⭐⭐☆'),
+        (5, '⭐⭐⭐⭐⭐'),
+    ]
     
 class ProductReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Products,  on_delete=models.CASCADE, null=True)
     review = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    rating  = models.CharField(choices=Rating, max_length=200, default=0)
+    rating = models.IntegerField(choices=RATING_CHOICES, default=1)
 
+
+
+    def __str__(self):
+        return self.review
 
 
     
@@ -165,9 +176,6 @@ class ProductReview(models.Model):
     
     class Meta:
         verbose_name_plural = 'Product Reviews'
-
-    def __str__(self):
-        return self.product
     
     
 

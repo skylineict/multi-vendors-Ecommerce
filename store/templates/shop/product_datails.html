@@ -76,7 +76,7 @@
                                             </div>
                                         </div>
                                         <div class="short-desc mb-30">
-                                            <p class="font-lg">{{productdetails.description}}</p>
+                                            <p class="font-lg">{{productdetails.sommary_product_info | safe}}</p>
                                         </div>
                                       
                                         <div class="detail-extralink mb-50">
@@ -115,16 +115,32 @@
                                         </li>
                                         
                                         <li class="nav-item">
+                                            <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#spefication">specifications</a>
+                                        </li>
+
+                                        <li class="nav-item">
                                             <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
                                         </li>
+
+
+
                                         <li class="nav-item">
-                                            <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
+                                            <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews {{product_reviews.count}}</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content shop_info_tab entry-main-content">
                                         <div class="tab-pane fade show active" id="Description">
                                             <div class="">
-                                                <p>{{productdetails.description}}.</p>
+                                                <p>{{productdetails.description | safe}}.</p>
+                                              
+                                               
+                                            </div>
+                                        </div>
+
+
+                                        <div class="tab-pane fade show active" id="spefication">
+                                            <div class="">
+                                                <p>{{productdetails.spefications | safe}}.</p>
                                               
                                                
                                             </div>
@@ -164,7 +180,7 @@
                                                     <h4 class="mb-0">{{productdetails.vendors.chat_response_time}}%</h4>
                                                 </div>
                                             </div>
-                                            <p>{{productdetails.vendors.description}}</p>
+                                            <p>{{productdetails.vendors.description | safe}}</p>
                                         </div>
                                         <div class="tab-pane fade" id="Reviews">
                                             <!--Comments-->
@@ -173,72 +189,45 @@
                                                     <div class="col-lg-8">
                                                         <h4 class="mb-30">Customer questions & answers</h4>
                                                         <div class="comment-list">
+                                                            {% for product_reviews in  product_reviews %}
+                                                              
+                                                        
                                                             <div class="single-comment justify-content-between d-flex mb-30">
                                                                 <div class="user justify-content-between d-flex">
                                                                     <div class="thumb text-center">
-                                                                        <img src="{% static 'assets/imgs/blog/author-2.png' %}" alt="" />
-                                                                        <a href="#" class="font-heading text-brand">Sienna</a>
+                                                                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="" />
+                                                                        <a href="#" class="font-heading text-brand">{{product_reviews.user.username}}</a>
                                                                     </div>
                                                                     <div class="desc">
                                                                         <div class="d-flex justify-content-between mb-10">
                                                                             <div class="d-flex align-items-center">
-                                                                                <span class="font-xs text-muted">December 4, 2022 at 3:12 pm </span>
+                                                                                <span class="font-xs text-muted">{{product_reviews.date| date:'D, M, Y'}} </span>
                                                                             </div>
                                                                             <div class="product-rate d-inline-block">
                                                                                 <div class="product-rating" style="width: 100%"></div>
                                                                             </div>
                                                                         </div>
-                                                                        <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
+                                                                        <p class="mb-10">{{product_reviews.review}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="single-comment justify-content-between d-flex mb-30 ml-30">
-                                                                <div class="user justify-content-between d-flex">
-                                                                    <div class="thumb text-center">
-                                                                        <img src="{% static 'assets/imgs/blog/author-3.png' %}" alt="" />
-                                                                        <a href="#" class="font-heading text-brand">Brenna</a>
-                                                                    </div>
-                                                                    <div class="desc">
-                                                                        <div class="d-flex justify-content-between mb-10">
-                                                                            <div class="d-flex align-items-center">
-                                                                                <span class="font-xs text-muted">December 4, 2022 at 3:12 pm </span>
-                                                                            </div>
-                                                                            <div class="product-rate d-inline-block">
-                                                                                <div class="product-rating" style="width: 80%"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="single-comment justify-content-between d-flex">
-                                                                <div class="user justify-content-between d-flex">
-                                                                    <div class="thumb text-center">
-                                                                        <img src="{% static 'assets/imgs/blog/author-4.png' %}" alt="" />
-                                                                        <a href="#" class="font-heading text-brand">Gemma</a>
-                                                                    </div>
-                                                                    <div class="desc">
-                                                                        <div class="d-flex justify-content-between mb-10">
-                                                                            <div class="d-flex align-items-center">
-                                                                                <span class="font-xs text-muted">December 4, 2022 at 3:12 pm </span>
-                                                                            </div>
-                                                                            <div class="product-rate d-inline-block">
-                                                                                <div class="product-rating" style="width: 80%"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+
+
+                                                            {% endfor %}
+
+
+
+
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <h4 class="mb-30">Customer reviews</h4>
                                                         <div class="d-flex mb-30">
+                                                            
                                                             <div class="product-rate d-inline-block mr-15">
                                                                 <div class="product-rating" style="width: 90%"></div>
                                                             </div>
-                                                            <h6>4.8 out of 5</h6>
+                                                            <h6>{{product_ratings.rating | floatformat:1}} out of 5</h6>
                                                         </div>
                                                         <div class="progress">
                                                             <span>5 star</span>
@@ -302,21 +291,33 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+
+
+                                    
                                 </div>
                             </div>
                             <div class="row mt-60">
                                 <div class="col-12">
                                     <h2 class="section-title style-1 mb-30">Related products</h2>
+                                  
                                 </div>
                                 <div class="col-12">
                                     <div class="row related-products">
+
+                                        {% for related_product in  related_products %}
+                                        
+                                  
+
+
                                         <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                             <div class="product-cart-wrap hover-up">
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
-                                                        <a href='shop-product-right.html' tabindex='0'>
-                                                            <img class="default-img" src="{% static 'assets/imgs/shop/product-2-1.jpg' %}" alt="" />
-                                                            <img class="hover-img" src="{% static 'assets/imgs/shop/product-2-2.jpg' %}" alt="" />
+                                                        <a href="{% url 'productdatails' related_product.product_id %}" tabindex='0'>
+                                                            <img class="default-img" src="{{related_product.image.url}}" alt="" />
+                                                            <img class="hover-img" src="{{related_product.image.url}}" alt="" />
                                                         </a>
                                                     </div>
                                                     <div class="product-action-1">
@@ -325,111 +326,26 @@
                                                         <a aria-label='Compare' class='action-btn small hover-up' href='shop-compare.html' tabindex='0'><i class="fi-rs-shuffle"></i></a>
                                                     </div>
                                                     <div class="product-badges product-badges-position product-badges-mrg">
-                                                        <span class="hot">Hot</span>
+                                                        <span class="hot">{{related_product.get_product_precentage |floatformat:0}} </span>
                                                     </div>
                                                 </div>
                                                 <div class="product-content-wrap">
-                                                    <h2><a href='shop-product-right.html' tabindex='0'>Ulstra Bass Headphone</a></h2>
+                                                    <h2><a href="{% url 'productdatails' related_product.product_id %}"tabindex='0'>{{related_product.product_name}}</a></h2>
                                                     <div class="rating-result" title="90%">
                                                         <span> </span>
                                                     </div>
                                                     <div class="product-price">
-                                                        <span>$238.85 </span>
-                                                        <span class="old-price">$245.8</span>
+                                                        <span>${{related_product.price}} </span>
+                                                        <span class="old-price">${{related_product.old_price}}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                            <div class="product-cart-wrap hover-up">
-                                                <div class="product-img-action-wrap">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href='shop-product-right.html' tabindex='0'>
-                                                            <img class="default-img" src="{% static 'assets/imgs/shop/product-3-1.jpg' %}" alt="" />
-                                                            <img class="hover-img" src="{% static 'assets/imgs/shop/product-4-2.jpg' %}" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                        <a aria-label='Add To Wishlist' class='action-btn small hover-up' href='shop-wishlist.html' tabindex='0'><i class="fi-rs-heart"></i></a>
-                                                        <a aria-label='Compare' class='action-btn small hover-up' href='shop-compare.html' tabindex='0'><i class="fi-rs-shuffle"></i></a>
-                                                    </div>
-                                                    <div class="product-badges product-badges-position product-badges-mrg">
-                                                        <span class="sale">-12%</span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                    <h2><a href='shop-product-right.html' tabindex='0'>Smart Bluetooth Speaker</a></h2>
-                                                    <div class="rating-result" title="90%">
-                                                        <span> </span>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>$138.85 </span>
-                                                        <span class="old-price">$145.8</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-4 col-12 col-sm-6">
-                                            <div class="product-cart-wrap hover-up">
-                                                <div class="product-img-action-wrap">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href='shop-product-right.html' tabindex='0'>
-                                                            <img class="default-img" src="{% static 'assets/imgs/shop/product-4-1.jpg' %}" alt="" />
-                                                            <img class="hover-img" src="{% static 'assets/imgs/shop/product-4-2.jpg' %}" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                        <a aria-label='Add To Wishlist' class='action-btn small hover-up' href='shop-wishlist.html' tabindex='0'><i class="fi-rs-heart"></i></a>
-                                                        <a aria-label='Compare' class='action-btn small hover-up' href='shop-compare.html' tabindex='0'><i class="fi-rs-shuffle"></i></a>
-                                                    </div>
-                                                    <div class="product-badges product-badges-position product-badges-mrg">
-                                                        <span class="new">New</span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                    <h2><a href='shop-product-right.html' tabindex='0'>HomeSpeak 12UEA Goole</a></h2>
-                                                    <div class="rating-result" title="90%">
-                                                        <span> </span>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>$738.85 </span>
-                                                        <span class="old-price">$1245.8</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-4 col-12 col-sm-6 d-lg-block d-none">
-                                            <div class="product-cart-wrap hover-up mb-0">
-                                                <div class="product-img-action-wrap">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href='shop-product-right.html' tabindex='0'>
-                                                            <img class="default-img" src="{% static 'assets/imgs/shop/product-5-1.jpg' %}" alt="" />
-                                                            <img class="hover-img" src="{% static 'assets/imgs/shop/product-3-2.jpg' %}" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                        <a aria-label='Add To Wishlist' class='action-btn small hover-up' href='shop-wishlist.html' tabindex='0'><i class="fi-rs-heart"></i></a>
-                                                        <a aria-label='Compare' class='action-btn small hover-up' href='shop-compare.html' tabindex='0'><i class="fi-rs-shuffle"></i></a>
-                                                    </div>
-                                                    <div class="product-badges product-badges-position product-badges-mrg">
-                                                        <span class="hot">Hot</span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                    <h2><a href='shop-product-right.html' tabindex='0'>Dadua Camera 4K 2022EF</a></h2>
-                                                    <div class="rating-result" title="90%">
-                                                        <span> </span>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>$89.8 </span>
-                                                        <span class="old-price">$98.8</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+
+                                        {% endfor %}
+
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -471,7 +387,7 @@
                                 <img src="{{productdetails.vendors.image.url}}" alt="" style="border-radius: 50px;" />
                                 <div class="vendor-name ml-15">
                                     <h6>
-                                        <a href='vendor-details-2.html'>{{productdetails.vendors.vendor_name}}</a>
+                                        <a href=" {% url 'vendor_store' productdetails.vendors.vendor_id  %}">{{productdetails.vendors.vendor_name}}</a>
                                     </h6>
                                     <div class="product-rate-cover text-end">
                                         <div class="product-rate d-inline-block">

@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'member',
     'product',
     'vendor',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
+   
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    
 ]
 
 ROOT_URLCONF = 'store.urls'
@@ -157,6 +161,39 @@ JAZZMIN_SETTINGS = {
      "site_brand": "Daily Store Admin",
      "site_logo": "assets/imgs/logo.png",
 }
+
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        'codeSnippet_theme': 'monokai',
+        # 'toolbar':  'all',
+        'width': 800,  # Set the desired width
+        'height': 200,  # Set the desired height
+        'toolbar': 'full',
+        'extraPlugins': ','.join(
+
+            [
+
+                'codesnippet',
+                'widget',
+                'dialog',
+
+
+
+
+
+            ]
+        ),
+
+
+
+
+    }
+}
+
 
 
 

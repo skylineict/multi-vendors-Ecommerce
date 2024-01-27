@@ -254,7 +254,7 @@
                         <div class="product-cart-wrap mb-30">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
-                                    <a href='shop-product-right.html'>
+                                    <a href="{% url 'productdatails' features_product.product_id %}">
                                         <img class="default-img" src="{{features_product.image.url}}"" alt="" />
                                         <img class="hover-img" src="{{features_product.image.url}}" alt="" />
                                     </a>
@@ -272,7 +272,7 @@
                                 <div class="product-category">
                                     <a href='shop-grid-right.html'>{{features_product.category}}</a>
                                 </div>
-                                <h2><a href='shop-product-right.html'>{{features_product.product_name}}</a></h2>
+                                <h2><a href="{% url 'productdatails' features_product.product_id %}">{{features_product.product_name}}</a></h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
                                         <div class="product-rating" style="width: 90%"></div>
@@ -280,7 +280,7 @@
                                     <span class="font-small ml-5 text-muted"> (4.0)</span>
                                 </div>
                                 <div>
-                                    <span class="font-small text-muted">By <a href='vendor-details-1.html'>{{features_product.vendors}}</a></span>
+                                    <span class="font-small text-muted">By <a href="{% url 'vendor_store' features_product.vendors.vendor_id  %}">{{features_product.vendors}}</a></span>
                                 </div>
                                 <div class="product-card-bottom">
                                     <div class="product-price">
