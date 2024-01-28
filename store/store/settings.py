@@ -89,12 +89,25 @@ WSGI_APPLICATION = 'store.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'mai.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'mai.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dailystore',
+        'USER': 'dailystore',
+        'PASSWORD': 'dailystore',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
 
 
 # Password validation
@@ -201,4 +214,4 @@ CKEDITOR_CONFIGS = {
 
 
 
-# AUTH_USER_MODEL = 'member.User' 
+AUTH_USER_MODEL = 'member.User' 

@@ -4,7 +4,8 @@ from django.db import models
 from django.db import models
 from shortuuid.django_fields  import ShortUUIDField
 from django.utils.safestring import mark_safe
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from member.models import User
 
 #this code record the vendors id and image upload files and save it that
 def image_directory_path(instance, filename):

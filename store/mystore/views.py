@@ -7,7 +7,8 @@ class shop(View):
     
     
     def get(self,request):
-        laptop_category = Category.objects.get(category_name='Laptop')
+        try: laptop_category = Category.objects.get(category_name='Laptop')
+        except: laptop_category = None
         featues_product = Products.objects.filter(features=True, product_status='approved').order_by('-date')
         lasted_category = Category.objects.order_by('-date')[:4]
         context = {

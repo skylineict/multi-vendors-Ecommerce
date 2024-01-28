@@ -1,7 +1,8 @@
 from django.db import models
 from shortuuid.django_fields  import ShortUUIDField
 from django.utils.safestring import mark_safe
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from member.models import User
 from vendor.models import Vendor
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -68,8 +69,8 @@ class Products(models.Model):
     description = RichTextUploadingField(null=True, blank=True)
     sommary_product_info= RichTextUploadingField(null=True, blank=True )
     # description = models.TextField(null=True, blank=True, default='elibook laptop')
-    price =   models.DecimalField(max_digits=9999999,decimal_places=2,default=70.90)
-    old_price =   models.DecimalField(max_digits=9999999,decimal_places=2,default=90.93)
+    price =   models.DecimalField(max_digits=60,decimal_places=2,default=70)
+    old_price =   models.DecimalField(max_digits=60,decimal_places=2,default=90.93)
     # spefications = models.TextField(null=True, blank=True)
     spefications = RichTextUploadingField(null=True, blank=True)
     product_status  = models.CharField(choices=Status, max_length=200, default='in review')
@@ -117,7 +118,7 @@ class Productimage(models.Model):
 class CartOrder(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     paid_status =   models.BooleanField(default=False)
-    price =   models.DecimalField(max_digits=9999999,decimal_places=2,default=70.90)
+    price =   models.DecimalField(max_digits=60,decimal_places=2,default=70.90)
     order_date = models.DateTimeField(auto_now_add=True)
     product_status  = models.CharField(choices=Order_Status, max_length=200, default='process')
 
@@ -134,8 +135,8 @@ class CartOrderItems(models.Model):
     product_satus= models.CharField(max_length=200)
     item= models.CharField(max_length=200)
     image= models.CharField(max_length=200)
-    price =   models.DecimalField(max_digits=9999999,decimal_places=2,default=70.90)
-    total =   models.DecimalField(max_digits=9999999,decimal_places=2,default=70.90)
+    price =   models.DecimalField(max_digits=60,decimal_places=2,default=70.90)
+    total =   models.DecimalField(max_digits=60,decimal_places=2,default=70.90)
     qty = models.IntegerField(default=0)
 
 
