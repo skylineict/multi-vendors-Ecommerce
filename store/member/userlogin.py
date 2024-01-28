@@ -4,10 +4,18 @@ from django.views.generic import View
 from django.contrib.auth.models import User
 from django.contrib  import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 
-class Login(View):
+
+class Login(UserPassesTestMixin,View):
+    def test_func(self):
+        return not self.request.user.is_authenticated
+
+    def handle_no_permission(self):
+        return redirect('home')  # Redirect to 'dashboard' if the user is authenticated
+  
     def get(self, request):
         return  render(request, 'users/login.html')
     

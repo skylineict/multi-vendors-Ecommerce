@@ -4,15 +4,25 @@ from django.views.generic import View
 from django.contrib.auth.models import User
 from django.contrib  import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import user_passes_test
+from .utiles import is_user_authenticated
+from django.contrib.auth.mixins import UserPassesTestMixin
+
 
 import pdb
 
 # Create your views here.
-class Registration(View):
+class Registration(UserPassesTestMixin,View):
+    def test_func(self):
+        return not self.request.user.is_authenticated
+
+    def handle_no_permission(self):
+        return redirect('home')  # Redirect to 'dashboard' if the user is authenticated
+  
     def get(self, request):
         return  render(request, 'users/register.html')
     
-    
+
     def post(self, request):
         email = request.POST['email']
         password = request.POST['password']

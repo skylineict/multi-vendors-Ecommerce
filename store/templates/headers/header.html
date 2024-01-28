@@ -37,7 +37,7 @@
                         <div class="header-info">
                             <ul>
 
-                                <li><a href='page-account.html'>My Account</a></li>
+                                <li><a href='#'>My Account</a></li>
                                 <li><a href='shop-wishlist.html'>Wishlist</a></li>
                                 <li><a href="shop-order.html">Order Tracking</a></li>
                             </ul>
@@ -210,21 +210,21 @@
                                     </div>
                                 </div>
                                 <div class="header-action-icon-2">
-                                    <a href='page-account.html'>
+                                    <a href='#'>
                                         <img class="svgInject" alt="Nest"
                                             src="{% static 'assets/imgs/theme/icons/icon-user.svg' %}" />
                                     </a>
-                                    <a href='page-account.html'><span class="lable ml-0">Account</span></a>
+                                    <a href='#'><span class="lable ml-0">Account</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
 
                                         <ul>
                                             {% if user.is_authenticated %}
-                                            <li><a href='page-account.html'><i class="fi fi-rs-user mr-10"></i>My
+                                            <li><a href='#'><i class="fi fi-rs-user mr-10"></i>My
                                                     Account</a></li>
-                                            <li><a href='page-account.html'><i
+                                            <li><a href='#'><i
                                                         class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
 
-                                            <li><a href='page-account.html'><i
+                                            <li><a href='#'><i
                                                         class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
                                             <li><a href="{% url 'logout' %}"><i class="fi fi-rs-sign-out mr-10"></i>Sign
                                                     out</a></li>
@@ -630,34 +630,19 @@
                     <nav>
                         <ul class="mobile-menu font-heading">
                             <li class="menu-item-has-children">
-                                <a href='index.html'>Home</a>
+                                <a href="{% url 'home' %}">Home</a>
 
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href='shop-grid-right.html'>shop</a>
-                                <ul class="dropdown">
-                                    <li>
 
-                                        <ul class="sub-menu">
-
-                                            {% for category_list in category_list %}
-                                            <li><a href='{% url ' category_product' category_list.categoryid
-                                                    %}'>{{category_list.category_name}}</a></li>
-
-
-                                            {% endfor %}
-
-                                            <hr>
-
-
-                                            <li><a href="{% url 'category_list' %}">All Category</a></li>
-
-                                        </ul>
-                                    </li>
-                                </ul>
+                            <li>
+                                <a href="{% url 'product_list' %}">Shop</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{% url 'category_list' %}">All Categories</a>
+                               
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="#">Vendors</a>
+                                <a href="{% url 'vendors' %}">Vendors </a>
 
                             </li>
                             <li class="menu-item-has-children">
@@ -692,71 +677,40 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children">
-
-                                <ul class="dropdown">
-                                    <li><a href='blog-category-grid.html'>Blog Category Grid</a></li>
-                                    <li><a href='blog-category-list.html'>Blog Category List</a></li>
-                                    <li><a href='blog-category-big.html'>Blog Category Big</a></li>
-                                    <li><a href='blog-category-fullwidth.html'>Blog Category Wide</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Single Product Layout</a>
-                                        <ul class="dropdown">
-                                            <li><a href='blog-post-left.html'>Left Sidebar</a></li>
-                                            <li><a href='blog-post-right.html'>Right Sidebar</a></li>
-                                            <li><a href='blog-post-fullwidth.html'>No Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Pages</a>
-                                <ul class="dropdown">
-
-                                    <li><a href='page-contact.html'>Contact</a></li>
-                                    <li><a href='page-account.html'>My Account</a></li>
-                                    <li><a href='page-login.html'>Login</a></li>
-                                    <li><a href='page-register.html'>Register</a></li>
-                                    <li><a href='page-forgot-password.html'>Forgot password</a></li>
-                                    <li><a href='page-reset-password.html'>Reset password</a></li>
-                                    <li><a href='page-purchase-guide.html'>Purchase Guide</a></li>
-                                    <li><a href='page-privacy-policy.html'>Privacy Policy</a></li>
-                                    <li><a href='page-terms.html'>Terms of Service</a></li>
-                                    <li><a href='page-404.html'>404 Page</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Language</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                    <li><a href="#">Spanish</a></li>
-                                </ul>
-                            </li>
+                         
+                         
                         </ul>
                     </nav>
                     <!-- mobile menu end -->
                 </div>
                 <div class="mobile-header-info-wrap">
+
+                    {% if  user.is_authenticated %}
+                  
                     <div class="single-mobile-header-info">
-                        <a href='page-contact.html'><i class="fi-rs-marker"></i> Our location </a>
+                        <a href="{% url "register" %}"><i class="fi-rs-user"></i>My Account </a>
                     </div>
                     <div class="single-mobile-header-info">
-                        <a href='page-login.html'><i class="fi-rs-user"></i>Log In / Sign Up </a>
+                        <a href="{% url "logout" %}"><i class="fi-rs-user"></i>Log out </a>
+                    </div>
+
+
+                    {% else %}
+
+
+                    <div class="single-mobile-header-info">
+                        <a href="{% url "register" %}"><i class="fi-rs-user"></i>Sign Up </a>
                     </div>
                     <div class="single-mobile-header-info">
-                        <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
+                        <a href="{% url "login" %}"><i class="fi-rs-user"></i>Log In  </a>
                     </div>
+
+
+                    {% endif %}
+
+
                 </div>
-                <div class="mobile-social-icon mb-50">
-                    <h6 class="mb-15">Follow Us</h6>
-                    <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-facebook-white.svg' %}" alt="" /></a>
-                    <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-twitter-white.svg' %}" alt="" /></a>
-                    <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-instagram-white.svg' %}" alt="" /></a>
-                    <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-pinterest-white.svg' %}" alt="" /></a>
-                    <a href="#"><img src="{% static 'assets/imgs/theme/icons/icon-youtube-white.svg' %}" alt="" /></a>
-                </div>
+               
                 <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
             </div>
         </div>
