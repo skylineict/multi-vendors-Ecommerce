@@ -160,6 +160,8 @@ STATICFILES_DIRS = [
 ]
 
 
+STATIC_ROOT = '/home/obidamkv/public_html/static'
+
 MESSAGE_TAGS =    {
     
 messages.DEBUG: 'alert-info',
