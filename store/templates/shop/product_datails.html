@@ -63,12 +63,12 @@
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 90%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (32 reviews)</span>
+                                                <span class="font-small ml-5 text-muted"> </span>
                                             </div>
                                         </div>
                                         <div class="clearfix product-price-cover">
                                             <div class="product-price primary-color float-left">
-                                                <span class="current-price text-brand">${{productdetails.price}}</span>
+                                                <span class=" current-price text-brand">$</span><span class="current-price text-brand" id="current-product-price">{{productdetails.price}}</span>
                                                 <span>
                                                
                                                     <span class="old-price font-md ml-15">${{productdetails.old_price}}</span>
@@ -80,17 +80,21 @@
                                         </div>
                                       
                                         <div class="detail-extralink mb-50">
-                                            <div class="detail-qty border radius">
-                                                <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                            
+                                                <input type="number" value="1" name="" id="product-quantity" class="w-25 mb-20">
+                                                <!-- <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
                                                 <span class="qty-val">1</span>
-                                                <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                            </div>
+                                                <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a> -->
+                                          
                                             <div class="product-extra-link2">
-                                                <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                <input type="hidden" hidden value="{{productdetails.product_id}}" class="product-id" id="product-id" name="">
+                                                <input type="hidden" value="{{productdetails.product_name}}" class="product-name" id="product_title" name="">
+                                                
+                                                <button type="submit" class="button button-add-to-cart" id="button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                                 <a aria-label='Add To Wishlist' class='action-btn hover-up' href='shop-wishlist.html'><i class="fi-rs-heart"></i></a>
                                                 <a aria-label='Compare' class='action-btn hover-up' href='shop-compare.html'><i class="fi-rs-shuffle"></i></a>
                                             </div>
-                                        </div>
+                                        </div> 
                                         <div class="font-xs">
                                             <ul class="mr-50 float-start">
                                                 <li class="mb-5">Type: <span class="text-brand">{{ productdetails.type}}</span></li>
@@ -151,6 +155,7 @@
                                                 <img src="{{productdetails.vendors.image.url}}" alt="" width="50" style="border-radius: 50px;" />
                                                 <div class="vendor-name ml-15">
                                                     <h6>
+                                                   
                                                        
                                                         <a href="{% url 'vendor_store' productdetails.vendors.vendor_id  %}">{{productdetails.vendors}}</a>
                                                     </h6>
@@ -188,9 +193,11 @@
                                                 <div class="row">
                                                     <div class="col-lg-8">
                                                         <h4 class="mb-30">Customer questions & answers</h4>
+                                                        <!-- <span><i class="fas fa-star text-warning"> </i></span> -->
+                                                        
                                                         <div class="comment-list">
                                                             {% for product_reviews in  product_reviews %}
-                                                              
+                                                             
                                                         
                                                             <div class="single-comment justify-content-between d-flex mb-30">
                                                                 <div class="user justify-content-between d-flex">
@@ -203,11 +210,17 @@
                                                                             <div class="d-flex align-items-center">
                                                                                 <span class="font-xs text-muted">{{product_reviews.date| date:'D, M, Y'}} </span>
                                                                             </div>
-                                                                            <div class="product-rate d-inline-block">
-                                                                                <div class="product-rating" style="width: 100%"></div>
-                                                                            </div>
+                                                                          {% for  stars in product_reviews.rating|ljust:product_reviews.rating  %}
+                                                                          
+                                                                      
+                                                                            
+                                                                           
+                                                                            <P><i class="fas fa-star text-warning"></i> </P>
+                                                                                
+                                                                            {% endfor %}
+                                                                          
                                                                         </div>
-                                                                        <p class="mb-10">{{product_reviews.review}}</p>
+                                                                        <p class="mb-10" style="display:block">{{product_reviews.review}}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -253,34 +266,52 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                           
+                                            <div class="alert alert-success mymessage" role="alert">
+                                                
+                                          
+                                              </div>
+
+
+
+                                              
+
+
                                             <!--comment form-->
+
+                                            {% if user.is_authenticated %}
+                                            {% if make_rview %}
                                             <div class="comment-form">
                                                 <h4 class="mb-15">Add a review</h4>
+                                               
                                                 <div class="product-rate d-inline-block mb-30"></div>
                                                 <div class="row">
                                                     <div class="col-lg-8 col-md-12">
-                                                        <form class="form-contact comment_form" action="#" id="commentForm">
+                                                        <form class="form-contact comment_form" action="{% url 'add_reveiw' productdetails.product_id  %}" method="post" id="commentForm" >
+                                                            {% csrf_token %}
                                                             <div class="row">
                                                                 <div class="col-12">
                                                                     <div class="form-group">
                                                                         <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-6">
+
+
+                                                                <div class="col-sm-12">
                                                                     <div class="form-group">
-                                                                        <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
+                                                                        <select class="form-control" name="rating" id="exampleFormControlSelect1">
+                                                                           
+
+                                                                            {% for rating in rating %}
+                                                                            <option value="{{ rating.0 }}">{{ rating.1}}</option>
+                                                                        {% endfor %}
+                                                                       
+                                                                          </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <div class="form-group">
-                                                                        <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
-                                                                    </div>
-                                                                </div>
+
+                                                              
                                                             </div>
                                                             <div class="form-group">
                                                                 <button type="submit" class="button button-contactForm">Submit Review</button>
@@ -289,6 +320,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                           
+                                            {% endif %}
+
+                                            {% else %}
+
+                                            <span class="text-primary"> Login to add Review</span>
+                                            {% endif %}
                                         </div>
                                     </div>
 

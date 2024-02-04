@@ -6,7 +6,7 @@ from member.models import User
 from vendor.models import Vendor
 from ckeditor_uploader.fields import RichTextUploadingField
 
-# Create your models here.
+
 
 def image_directory_path(instance, filename):
     return 'user_{0}/{1}'.format(instance.user.id, filename)
@@ -49,13 +49,13 @@ Status = (
 )
 
 
-Rating = [
-        (1, '⭐☆☆☆☆'),
-        (2, '⭐⭐☆☆☆'),
-        (3, '⭐⭐⭐☆☆'),
-        (4, '⭐⭐⭐⭐☆'),
-        (5, '⭐⭐⭐⭐⭐')
-    ]
+# Rating = [
+#         (1, '⭐☆☆☆☆'),
+#         (2, '⭐⭐☆☆☆'),
+#         (3, '⭐⭐⭐☆☆'),
+#         (4, '⭐⭐⭐⭐☆'),
+#         (5, '⭐⭐⭐⭐⭐')
+#     ]
 
 
 
@@ -101,6 +101,15 @@ class Products(models.Model):
         return new_price
     
 
+RATING_CHOICES = [
+        (1, '⭐☆☆☆☆'),
+        (2, '⭐⭐☆☆☆'),
+        (3, '⭐⭐⭐☆☆'),
+        (4, '⭐⭐⭐⭐☆'),
+        (5, '⭐⭐⭐⭐⭐'),
+    ]
+
+# Create your models here.
     
 class Productimage(models.Model):
     product_names = models.ForeignKey(Products,  on_delete=models.CASCADE, null=True,related_name='product_images')
@@ -149,13 +158,7 @@ class CartOrderItems(models.Model):
     def cartitem_image(self):
         return mark_safe('<img src="%s" width="40" height="40" />'% (self.image.url))
 
-RATING_CHOICES = [
-        (1, '⭐☆☆☆☆'),
-        (2, '⭐⭐☆☆☆'),
-        (3, '⭐⭐⭐☆☆'),
-        (4, '⭐⭐⭐⭐☆'),
-        (5, '⭐⭐⭐⭐⭐'),
-    ]
+
     
 class ProductReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
