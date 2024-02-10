@@ -5650,12 +5650,12 @@ table .product-thumbnail img {
 }
 
 .shopping-summery table thead th {
-  background-color: #ececec;
+  background-color: #1877f2;
   padding: 18px 0;
   font-family: "Quicksand", sans-serif;
   font-size: 17px;
   font-weight: 700;
-  color: #253D4E;
+  color: #fff;
 }
 
 .shopping-summery table thead th.start {

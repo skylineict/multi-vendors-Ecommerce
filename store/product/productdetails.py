@@ -145,25 +145,6 @@ def add_reveiw(request,product_id):
 
 
 
-def add_cart(request):
-    
-    new_cart = {}
-    print(request.GET['id'])
-
-    new_cart[(request.GET['id'])] ={
-        'qty': request.GET['qty'],
-        'product_name': request.GET['product_name'],
-        'price': request.GET['price'],
-        
-        }
-    
-
-    return JsonResponse({ 'data':new_cart
-
-
-    })
-
-
 
 
 
