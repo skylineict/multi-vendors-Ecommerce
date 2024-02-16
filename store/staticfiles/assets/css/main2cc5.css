@@ -849,7 +849,7 @@ h3 {
 }
 
 h4 {
-  font-size: 24px;
+  font-size: 16px;
 }
 
 h5 {
@@ -1209,9 +1209,9 @@ button[type='submit']:hover {
 .button {
   display: inline-block;
   border: 1px solid transparent;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
-  padding: 12px 30px;
+  padding: 6px 16px;
   border-radius: 4px;
   color: #fff;
   border: 1px solid transparent;
@@ -1224,7 +1224,7 @@ button[type='submit']:hover {
 
 .btn:hover,
 .button:hover {
-  background-color: #FDC040;
+  background-color: #dc3545;
 }
 
 .btn.btn-sm,
@@ -11130,6 +11130,7 @@ footer .hotline img {
 }
 
 .ml-30 {
+  text-align: center;
   margin-left: 30px !important;
 }
 

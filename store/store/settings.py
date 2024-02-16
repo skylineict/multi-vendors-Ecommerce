@@ -44,7 +44,12 @@ INSTALLED_APPS = [
     'member',
     'product',
     'vendor',
+    #third party app
     'ckeditor',
+    'paypal.standard.ipn',
+    
+    
+   
 ]
 
 MIDDLEWARE = [
@@ -110,6 +115,25 @@ DATABASES = {
 
 
 
+
+
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
+#         'NAME': 'dailystore',
+#         'USER': 'dailystore',
+#         'PASSWORD': 'dailystore',
+#         'HOST': 'localhost',  # Or your MySQL server's IP address
+#              # MySQL default port
+#     }
+# }
+
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -140,7 +164,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+LOGIN_URL ='login'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -236,3 +260,6 @@ LOGGING = {
 
 
 AUTH_USER_MODEL = 'member.User' 
+
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = 'sb-w8naf29545953@business.example.com'

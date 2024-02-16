@@ -34,14 +34,14 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(CartOrder)
 class CartorderAdmin(admin.ModelAdmin):
-    list_display = ['paid_status','product_status','user','order_date','price']
+    list_display = ['paid_status','product_status','user','order_date','price','invoice_No',]
 
 
 
 @admin.register(CartOrderItems)
 class CartOrderItemsAdmin(admin.ModelAdmin):
     list_display = ['order','product_satus','item','image','total',
-                    'price','qty']
+                    'price','qty','invoice_No']
     
 
 

@@ -26,7 +26,9 @@ urlpatterns = [
     path('user/', include('member.urls')),
     path('product_list/', include('product.urls')),
     path('vendors/', include('vendor.urls')),
-     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('paypal/', include("paypal.standard.ipn.urls")),
+
 ]
 
 if settings.DEBUG:

@@ -40,7 +40,7 @@
                             <ul>
 
                                 <li><a href='#'>My Account</a></li>
-                                <li><a href='shop-wishlist.html'>Wishlist</a></li>
+                               
                                 <li><a href="shop-order.html">Order Tracking</a></li>
                             </ul>
                         </div>
@@ -151,22 +151,8 @@
                                         </select>
                                     </form>
                                 </div>
-                                <div class="header-action-icon-2">
-                                    <a href='shop-compare.html'>
-                                        <img class="svgInject" alt="Nest"
-                                            src="{% static 'assets/imgs/theme/icons/icon-compare.svg' %}" />
-                                        <span class="pro-count blue">3</span>
-                                    </a>
-                                    <a href='shop-compare.html'><span class="lable ml-0">Compare</span></a>
-                                </div>
-                                <div class="header-action-icon-2">
-                                    <a href='shop-wishlist.html'>
-                                        <img class="svgInject" alt="Nest"
-                                            src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
-                                        <span class="pro-count blue">6</span>
-                                    </a>
-                                    <a href='shop-wishlist.html'><span class="lable">Wishlist</span></a>
-                                </div>
+                           
+                            
                                 <div class="header-action-icon-2">
                                     <a class='mini-cart-icon' href='{% url "view_cart" %}'>
                                         <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
@@ -179,7 +165,7 @@
 
                                             <div class="shopping-cart-button">
                                                 <a class='outline' href='{% url "view_cart" %}'>View cart</a>
-                                                <a href='{% url "view_cart" %}'>Checkout</a>
+                                                <a href='{% url "check-out" %}'>Checkout</a>
                                             </div>
                                         </div>
                                     </div>
@@ -519,12 +505,7 @@
                 </div>
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
-                        <div class="header-action-icon-2">
-                            <a href='shop-wishlist.html'>
-                                <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
-                                <span class="pro-count white">4</span>
-                            </a>
-                        </div>
+                      
                         <div class="header-action-icon-2">
                             <a class='mini-cart-icon' href='shop-cart.html'>
                                 <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
@@ -565,7 +546,7 @@
                                     </div>
                                     <div class="shopping-cart-button">
                                         <a href='shop-cart.html'>View cart</a>
-                                        <a href='shop-checkout.html'>Checkout</a>
+                                        <a href='{% url "check-out" %}'>Checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -686,7 +667,7 @@
 
                 </div>
 
-                <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
+                <div class="site-copyright">Copyright 2022 © daily. All rights reserved. Powered by AliThemes.</div>
             </div>
         </div>
     </div>
@@ -820,9 +801,9 @@
                                         alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent,
                                         Utah 53127 United States</span></li>
                                 <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}"
-                                        alt="" /><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                                        alt="" /><strong>Call Us:</strong><span>(+1)- 523, 456,333</span></li>
                                 <li><img src="{% static 'assets/imgs/theme/icons/icon-email-2.svg' %}"
-                                        alt="" /><strong>Email:</strong><span>sale@Nest.com</span></li>
+                                        alt="" /><strong>Email:</strong><span>dailly@dailystore.com</span></li>
                                 <li><img src="{% static 'assets/imgs/theme/icons/icon-clock.svg' %}"
                                         alt="" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span></li>
                             </ul>
@@ -845,7 +826,7 @@
                         <ul class="footer-list mb-sm-5 mb-md-0">
                             <li><a href="#">Sign In</a></li>
                             <li><a href="#">View Cart</a></li>
-                            <li><a href="#">My Wishlist</a></li>
+                           
                             <li><a href="#">Track My Order</a></li>
                             <li><a href="#">Help Ticket</a></li>
                             <li><a href="#">Shipping Details</a></li>
@@ -885,10 +866,7 @@
                 <div class="col-12 mb-30">
                     <div class="footer-bottom"></div>
                 </div>
-                <div class="col-xl-4 col-lg-6 col-md-6">
-                    <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce
-                        Template <br />All rights reserved</p>
-                </div>
+              
                 <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
 
 
@@ -943,8 +921,11 @@
     <script src="{% static 'assets/js/plugins/jquery.vticker-min.js' %}"></script>
     <script src="{% static 'assets/js/plugins/jquery.theia.sticky.js' %}"></script>
     <script src="{% static 'assets/js/plugins/jquery.elevatezoom.js' %}"></script>
+  
     <!-- Template  JS -->
     <script src="{% static 'assets/js/main2cc5.js' %}"></script>
     <script src="{% static 'assets/js/shop2cc5.js' %}"></script>
     <script src="{% static 'assets/js/reveiw.js' %}"></script>
     <script src="{% static 'assets/js/add-cart.js' %}"></script>
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+    <script src="{% static 'assets/js/api.js' %}"></script>

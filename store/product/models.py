@@ -130,30 +130,32 @@ class CartOrder(models.Model):
     price =   models.DecimalField(max_digits=60,decimal_places=2,default=70.90)
     order_date = models.DateTimeField(auto_now_add=True)
     product_status  = models.CharField(choices=Order_Status, max_length=200, default='process')
+    invoice_No = models.CharField(max_length=200, default='No2304')
 
 
     class Meta:
         verbose_name_plural = 'Cart Orders'
 
     def __str__(self):
-        return self.product
+        return self.product_status
 
 
 class CartOrderItems(models.Model):
-    order = models.ForeignKey(CartOrder,  on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(CartOrder,  on_delete=models.CASCADE, null=True, related_name='orders')
     product_satus= models.CharField(max_length=200)
     item= models.CharField(max_length=200)
     image= models.CharField(max_length=200)
     price =   models.DecimalField(max_digits=60,decimal_places=2,default=70.90)
     total =   models.DecimalField(max_digits=60,decimal_places=2,default=70.90)
     qty = models.IntegerField(default=0)
+    invoice_No = models.CharField(max_length=200, default='No2304')
 
 
     class Meta:
         verbose_name_plural = 'Cart Orders'
 
     def __str__(self):
-        return self.product
+        return self.invoice_No
     
     def cartitem_image(self):
         return mark_safe('<img src="%s" width="40" height="40" />'% (self.image.url))
